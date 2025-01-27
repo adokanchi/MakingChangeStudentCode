@@ -13,10 +13,8 @@ public class MakingChange {
         counts[0] = 1;
         // Go coin by coin to avoid double-counting because of order
         for (int coinVal : coins) {
-            for (int i = 1; i <= target; i++) {
-                if (i >= coinVal) {
-                    counts[i] += counts[i - coinVal];
-                }
+            for (int i = coinVal; i <= target; i++) {
+                counts[i] += counts[i - coinVal];
             }
         }
         return counts[target];
