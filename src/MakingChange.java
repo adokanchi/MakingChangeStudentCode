@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * The class Making Change solves a classic problem:
  * given a set of coins, how many ways can you make change for a target amount?
@@ -9,15 +7,13 @@ import java.util.Arrays;
  */
 
 public class MakingChange {
-    /**
-     * TODO: Complete this function, countWays(), to return the number of ways to make change
-     *  for any given total with any given set of coins.
-     */
     public static long countWays(int target, int[] coins) {
+        // counts[i] is the number of ways to make the target value i using the coins in coins[].
         long[] counts = new long[target + 1];
         counts[0] = 1;
-        for (int i = 1; i <= target; i++) {
-            for (int coinVal : coins) {
+        // Go coin by coin to avoid double-counting because of order
+        for (int coinVal : coins) {
+            for (int i = 1; i <= target; i++) {
                 if (i >= coinVal) {
                     counts[i] += counts[i - coinVal];
                 }
