@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf08351e-8001-407c-880c-49b47a0a4156" name="Changes" comment="">
+    <list default="true" id="bf08351e-8001-407c-880c-49b47a0a4156" name="Changes" comment="brute force">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MakingChange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MakingChange.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +50,8 @@
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.MakingChangeTest.executor": "Run",
+    "JUnit.MakingChangeTest.testCorrectLarge.executor": "Run",
+    "JUnit.MakingChangeTest.testCorrectSmall.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -59,7 +62,7 @@
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.MakingChangeTest.testCorrectLarge">
+  <component name="RunManager" selected="JUnit.MakingChangeTest">
     <configuration name="MakingChangeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Making Change Student Code" />
       <option name="PACKAGE_NAME" value="" />
@@ -91,9 +94,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MakingChangeTest" />
         <item itemvalue="JUnit.MakingChangeTest.testCorrectLarge" />
         <item itemvalue="JUnit.MakingChangeTest.testCorrectSmall" />
-        <item itemvalue="JUnit.MakingChangeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -106,6 +109,19 @@
       <option name="presentableId" value="Default" />
       <updated>1733174949693</updated>
     </task>
+    <task id="LOCAL-00001" summary="brute force">
+      <option name="closed" value="true" />
+      <created>1737964529227</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737964529227</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="brute force" />
+    <option name="LAST_COMMIT_MESSAGE" value="brute force" />
   </component>
 </project>

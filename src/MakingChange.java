@@ -14,32 +14,15 @@ public class MakingChange {
      *  for any given total with any given set of coins.
      */
     public static long countWays(int target, int[] coins) {
-        return countWays(target, coins, 0);
-    }
-
-    public static long countWays(int target, int[] coins, int idx) {
-        if (idx >= coins.length) return 0;
-        if (idx == coins.length - 1) {
-            if (target % coins[idx] == 0) {
-                return 1;
-            }
-            else {
-                return 0;
+        long[] counts = new long[target + 1];
+        counts[0] = 1;
+        for (int i = 1; i <= target; i++) {
+            for (int coinVal : coins) {
+                if (i >= coinVal) {
+                    counts[i] += counts[i - coinVal];
+                }
             }
         }
-
-        Arrays.sort(coins);
-
-        int coinVal = coins[idx];
-        int maxNumCoins = target / coinVal;
-
-        long numWays = 0;
-        for (int i = 0; i <= maxNumCoins; i++) {
-            numWays += countWays(target - i * coinVal, coins, idx + 1);
-        }
-
-
-        return numWays;
+        return counts[target];
     }
-
 }
