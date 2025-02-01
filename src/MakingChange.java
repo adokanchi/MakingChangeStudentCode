@@ -7,37 +7,30 @@
  */
 
 public class MakingChange {
+    private static long[][] storedVals;
+    private static final long EMPTY = -1;
+
     public static long countWays(int target, int[] coins) {
-        // counts[i] is the number of ways to make the target value i using the coins in coins[].
-        long[] currCounts = new long[target + 1];
-        currCounts[0] = 1;
-        long[] nextCounts = new long[target + 1];
-        // Go coin by coin to avoid double-counting because of order
-        for (int coinVal : coins) {
-            for (int i = target; i >= 0; i--) {
-//                computeNextCounts(currCounts, nextCounts, i, coinVal);
-                long next = 0;
-                for (int j = i; j >= 0; j -= coinVal) {
-                    next += currCounts[j];
-                }
-                nextCounts[i] = next;
-            }
-            currCounts = nextCounts;
-            nextCounts = new long[target + 1];
-        }
-        return currCounts[target];
+        storedVals = new long[coins.length][target + 1];
+        for (int i = 0; i < storedVals.length; i++) for (int j = 0; j < storedVals[0].length; j++) storedVals[i][j] = EMPTY;
+        return countWays(target, coins, 0);
     }
 
-    private static void computeNextCounts(long[] currCounts, long[] nextCounts, int i, int coinVal) {
-        if (i - coinVal < 0) {
-
+    private static long countWays(int target, int[] coins, int coinIdx) {
+        if (target == 0) return 1;
+        if (target < 0) return 0;
+        // Speedup: when there is one coin left, we can immediately return 1 or 0
+        if (coinIdx == coins.length - 1) {
+            if (target % coins[coinIdx] == 0) return 1;
+            return 0;
         }
 
-        if (nextCounts[i - coinVal] == 0) {
-            computeNextCounts(currCounts, nextCounts, i - coinVal, coinVal);
-        }
+        // If we have computed this case before
+        if (storedVals[coinIdx][target] != EMPTY) return storedVals[coinIdx][target];
 
-        nextCounts[i] = currCounts[i] + nextCounts[i - coinVal];
+        // If we haven't computed this case before
+        long result = countWays(target, coins, coinIdx + 1) + countWays(target - coins[coinIdx], coins, coinIdx);
+        storedVals[coinIdx][target] = result;
+        return result;
     }
-
 }
