@@ -11,6 +11,13 @@ public class MakingChange {
     private static final long EMPTY = -1;
 
     public static long countWays(int target, int[] coins) {
+        long[] counts = new long[target + 1];
+        counts[0] = 1;
+        for (int coinVal : coins) for (int i = coinVal; i <= target; i++) counts[i] += counts[i - coinVal];
+        return counts[target];
+    }
+
+    public static long countWaysTopDown(int target, int[] coins) {
         storedVals = new long[coins.length][target + 1];
         for (int i = 0; i < storedVals.length; i++) for (int j = 0; j < storedVals[0].length; j++) storedVals[i][j] = EMPTY;
         return countWays(target, coins, 0);
