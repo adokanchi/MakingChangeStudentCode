@@ -7,37 +7,16 @@
  */
 
 public class MakingChange {
-    private static long[][] storedVals;
-    private static final long EMPTY = -1;
-
     public static long countWays(int target, int[] coins) {
+        // counts[i] is the number of combinations to make the target value i
         long[] counts = new long[target + 1];
         counts[0] = 1;
-        for (int coinVal : coins) for (int i = coinVal; i <= target; i++) counts[i] += counts[i - coinVal];
-        return counts[target];
-    }
-
-    public static long countWaysTopDown(int target, int[] coins) {
-        storedVals = new long[coins.length][target + 1];
-        for (int i = 0; i < storedVals.length; i++) for (int j = 0; j < storedVals[0].length; j++) storedVals[i][j] = EMPTY;
-        return countWays(target, coins, 0);
-    }
-
-    private static long countWays(int target, int[] coins, int coinIdx) {
-        if (target == 0) return 1;
-        if (target < 0) return 0;
-        // Speedup: when there is one coin left, we can immediately return 1 or 0
-        if (coinIdx == coins.length - 1) {
-            if (target % coins[coinIdx] == 0) return 1;
-            return 0;
+        // Go coin by coin to avoid counting duplicate combinations
+        for (int coinVal : coins) {
+            for (int i = coinVal; i <= target; i++) {
+                counts[i] += counts[i - coinVal];
+            }
         }
-
-        // If we have computed this case before
-        if (storedVals[coinIdx][target] != EMPTY) return storedVals[coinIdx][target];
-
-        // If we haven't computed this case before
-        long result = countWays(target, coins, coinIdx + 1) + countWays(target - coins[coinIdx], coins, coinIdx);
-        storedVals[coinIdx][target] = result;
-        return result;
+        return counts[target];
     }
 }
